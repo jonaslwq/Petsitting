@@ -1,0 +1,27 @@
+<html>
+<body>
+    <h2>Pending Offers</h2>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Offer ID</th>
+            <th>Interested User</th>
+            <th>Action</th>
+        </thead>
+        {% for interested_user in records %}
+        {% for offer in records %}
+        <tr>
+            <td> {{ offer.0 }} </td>
+            <td> {{ interested_user.0 }} </td>
+            <td>
+                <a href="view_offer/{{offer.0}}"><button>View Offer</button></a> | 
+                <a href="view_user/{{interested_user.0}}"><button>View User</button></a>
+                | 
+                <input type="hidden" name="offerid" value="{{offer.0}}"/>
+                <input type="hidden" name="i_user" value="{{interested_user.0}}"/>
+              </form></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

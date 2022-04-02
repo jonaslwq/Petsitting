@@ -13,7 +13,7 @@ def index(request):
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM customers ORDER BY customerid DESC")
+        cursor.execute("SELECT * FROM customers ORDER BY customerid")
         customers = cursor.fetchall()
 
     result_dict = {'records': customers}
@@ -88,5 +88,41 @@ def edit(request, id):
 
     context["obj"] = obj
     context["status"] = status
- 
     return render(request, "app/edit.html", context)
+
+        # Create your views here.
+
+def pending(request):
+    """Shows the pending page"""
+
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM pending WHERE username = login_user")
+        pending_offers = cursor.fetchall()
+
+    result_dict = {'records': pending_offers}
+
+    return render(request,'app/pending.html',result_dict)
+
+# Create your view_user here.
+def view_user(request, i_user):
+    """Shows the main page"""
+    
+    ## Use raw query to get a customer
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM portfolio WHERE username = %s", [i_user])
+        pending_offers = cursor.fetchone()
+    result_dict = {'interested_user': pending_offers}
+
+    return render(request,'app/view_user.html',result_dict)
+
+def view_offer(request, offerid):
+    """Shows the main page"""
+    
+    ## Use raw query to get a customer
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM joboffer WHERE offerid = %s", [offerid])
+        pending_offers = cursor.fetchone()
+    result_dict = {'offer': pending_offers}
+
+    return render(request,'app/view_offer.html',result_dict)
