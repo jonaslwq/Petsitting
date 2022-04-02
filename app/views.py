@@ -92,7 +92,7 @@ def edit(request, id):
 
         # Create your views here.
 
-def pending(request):
+def pending(request, *args, **kwargs):
     """Shows the pending page"""
 
     ## Use raw query to get all objects
