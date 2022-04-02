@@ -33,3 +33,9 @@ psql ${URI} -f sql/AppStoreSchema.sql
 psql ${URI} -f sql/AppStoreCustomers.sql
 psql ${URI} -f sql/AppStoreGames.sql
 psql ${URI} -f sql/AppStoreDownloads.sql
+psql ${URI} -f sql/PetsittingSchema.sql
+psql ${URI} -f sql/Petsittingjoboffer.sql
+psql ${URI} -f sql/Petsittingpending.sql
+psql ${URI} -f sql/Petsittingpet.sql
+psql ${URI} -f sql/Petsittingportfolio.sql
+psql ${URI} -f sql/Petsittingtransaction.sql
