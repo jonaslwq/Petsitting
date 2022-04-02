@@ -97,7 +97,7 @@ def pending(request):
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM pending WHERE username = login_user")
+        cursor.execute("SELECT * FROM pending WHERE username = 'Johnny123'")
         pending_offers = cursor.fetchall()
 
     result_dict = {'records': pending_offers}
@@ -111,8 +111,8 @@ def view_user(request, i_user):
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM portfolio WHERE username = %s", [i_user])
-        pending_offers = cursor.fetchone()
-    result_dict = {'interested_user': pending_offers}
+        interested_user = cursor.fetchone()
+    result_dict = {'interested_user': interested_user}
 
     return render(request,'app/view_user.html',result_dict)
 
@@ -122,7 +122,7 @@ def view_offer(request, offerid):
     ## Use raw query to get a customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM joboffer WHERE offerid = %s", [offerid])
-        pending_offers = cursor.fetchone()
-    result_dict = {'offer': pending_offers}
+        offers = cursor.fetchone()
+    result_dict = {'offer': offers}
 
     return render(request,'app/view_offer.html',result_dict)
