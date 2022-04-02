@@ -97,13 +97,12 @@ def pending(request, *args, **kwargs):
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM pending WHERE username = 'Johnny123'")
+        cursor.execute("SELECT * FROM pending")
         pending_offers = cursor.fetchall()
 
     result_dict = {'records': pending_offers}
-    helloworld = {"hello" : "world"}
 
-    return render(request,'app/pending.html',result_dict, helloworld)
+    return render(request,'app/pending.html',result_dict)
 
 # Create your view_user here.
 def view_user(request, i_user):
