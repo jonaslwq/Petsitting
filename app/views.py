@@ -101,8 +101,9 @@ def pending(request):
         pending_offers = cursor.fetchall()
 
     result_dict = {'records': pending_offers}
+    helloworld = {"hello" : "world"}
 
-    return render(request,'app/pending.html',result_dict)
+    return render(request,'app/pending.html',result_dict, helloworld)
 
 # Create your view_user here.
 def view_user(request, i_user):
