@@ -8,17 +8,16 @@
             <th>Interested User</th>
             <th>Action</th>
         </thead>
-        {% for interested_user in records %}
-        {% for offer in records %}
+        {% for offer_user in records %}
         <tr>
-            <td> {{ offer.0 }} </td>
-            <td> {{ interested_user.0 }} </td>
+            <td> {{ offer_user.0 }} </td>
+            <td> {{ offer_user.1 }} </td>
             <td>
-                <a href="view_offer/{{offer.0}}"><button>View Offer</button></a> | 
-                <a href="view_user/{{interested_user.0}}"><button>View User</button></a>
+                <a href="view_offer/{{offer_user.0}}"><button>View Offer</button></a> | 
+                <a href="view_user/{{offer_user.1}}"><button>View User</button></a>
                 | 
-                <input type="hidden" name="offerid" value="{{offer.0}}"/>
-                <input type="hidden" name="i_user" value="{{interested_user.0}}"/>
+                <input type="hidden" name="offerid" value="{{offer_user.0}}"/>
+                <input type="hidden" name="i_user" value="{{offer_user.1}}"/>
               </form></td>
         </tr>
         {% endfor %}
