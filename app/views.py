@@ -112,9 +112,9 @@ def view_user(request, i_user):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM portfolio WHERE username = %s", [i_user])
         interested_user = cursor.fetchone()
-    result_dict = {'interested_user': interested_user}
+    result_dict2 = {'interested_user': interested_user}
 
-    return render(request,'app/view_user.html',result_dict)
+    return render(request,'app/view_user.html',result_dict2)
 
 def view_offer(request, offerid):
     """Shows the main page"""
@@ -123,6 +123,6 @@ def view_offer(request, offerid):
     with connection.cursor() as cursor:
         cursor.execute("SELECT * FROM joboffer WHERE offerid = %s", [offerid])
         offers = cursor.fetchone()
-    result_dict = {'offer': offers}
+    result_dict1 = {'offer': offers}
 
-    return render(request,'app/view_offer.html',result_dict)
+    return render(request,'app/view_offer.html',result_dict1)
