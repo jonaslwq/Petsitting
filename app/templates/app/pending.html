@@ -13,11 +13,8 @@
             <td> {{helloworld}} </td>
             <td> {{ offer_user.1 }} </td>
             <td>
-                <a href="view_offer/{{result_dict.0}}"><button>View Offer</button></a> | 
-                <a href="view_user/{{result_dict.1}}"><button>View User</button></a>
-                | 
-                <input type="hidden" name="offerid" value="{{offer_user.0}}"/>
-                <input type="hidden" name="i_user" value="{{offer_user.1}}"/>
+                <a href="view_offer/{{result_dict.1}}"><button>View Offer</button></a> | 
+                <a href="view_user/{{result_dict.2}}"><button>View User</button></a>
               </form></td>
         </tr>
         {% endfor %}

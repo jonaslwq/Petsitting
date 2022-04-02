@@ -42,6 +42,7 @@ CHECK (rating >= 0 AND rating <= 5)
 );
 
 CREATE TABLE IF NOT EXISTS pending (
+username VARCHAR(256) REFERENCES portfolio(username) DEFERRABL
 offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE,
 username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE
 );
