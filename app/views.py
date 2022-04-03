@@ -1,6 +1,18 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 
+def pending(request):
+    """Shows the pending page"""
+
+    ## Use raw query to get all objects
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM pending")
+        pending_offers = cursor.fetchall()
+
+    result_dict = {'pending_records': pending_offers}
+
+    return render(request,'app/pending.html',result_dict)
+
 # Create your views here.
 def index(request):
     """Shows the main page"""
@@ -19,6 +31,7 @@ def index(request):
     result_dict = {'records': customers}
 
     return render(request,'app/index.html',result_dict)
+
 
 # Create your views here.
 def view(request, id):
@@ -89,20 +102,6 @@ def edit(request, id):
     context["obj"] = obj
     context["status"] = status
     return render(request, "app/edit.html", context)
-
-        # Create your views here.
-
-def pending(request):
-    """Shows the pending page"""
-
-    ## Use raw query to get all objects
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM pending")
-        pending_offers = cursor.fetchall()
-
-    result_dict = {'pending_records': pending_offers}
-
-    return render(request,'app/pending.html',result_dict)
 
 # Create your view_user here.
 def view_user(request, i_user):
