@@ -8,14 +8,14 @@
             <th>Interested User</th>
             <th>Action</th>
         </thead>
-        {% for offer_user in records %}
+        {% for pending_offers in pending_records %}
         <tr>
-            <td> {{helloworld}} </td>
-            <td> {{ offer_user.1 }} </td>
+            <td> {{ pending_offers.0 }} </td>
+            <td> {{ pending_offers.1 }} </td>
             <td>
-                <a href="view_offer/{{result_dict.1}}"><button>View Offer</button></a> | 
-                <a href="view_user/{{result_dict.2}}"><button>View User</button></a>
-              </form></td>
+                <a href="view_offer/{{pending_offers.0}}"><button>View Offer</button></a> | 
+                <a href="view_user/{{pending_offers.1}}"><button>View User</button></a>
+              </td>
         </tr>
         {% endfor %}
     </table>

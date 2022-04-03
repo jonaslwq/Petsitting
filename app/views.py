@@ -92,7 +92,7 @@ def edit(request, id):
 
         # Create your views here.
 
-def pending(request, *args, **kwargs):
+def pending(request):
     """Shows the pending page"""
 
     ## Use raw query to get all objects
@@ -100,7 +100,7 @@ def pending(request, *args, **kwargs):
         cursor.execute("SELECT * FROM pending")
         pending_offers = cursor.fetchall()
 
-    result_dict = {'records': pending_offers}
+    result_dict = {'pending_records': pending_offers}
 
     return render(request,'app/pending.html',result_dict)
 
