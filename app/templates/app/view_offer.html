@@ -1,0 +1,41 @@
+<html>
+<body>
+    <h2>Details for Offer {{pendingoffers.0}}</h2>
+    <a href="/">Back to home</a>
+    <br/><br/>
+    <table style='text-align:left'>
+        <tr>
+            <th>Offer ID</th>
+            <td>:</td>
+            <td> {{ pendingoffers.0 }} </td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>:</td>
+            <td> {{ pendingoffers.1 }} </td>
+        </tr>
+        <tr>
+            <th>Location</th>
+            <td>:</td>
+            <td> {{ pendingoffers.2 }} </td>
+        </tr>
+        <tr>
+            <th>Date From</th>
+            <td>:</td>
+            <td> {{ pendingoffers.3 }} </td>
+        </tr>
+        <tr>
+            <th>Date To</th>
+            <td>:</td>
+            <td> {{ pendingoffers.4 }} </td>
+        </tr>
+        <tr>
+            <th>Pet ID</th>
+            <td>:</td>
+            <td> {{ pendingoffers.5 }} </td>
+        </tr>
+    
+    </table>
+    <button name = "action", type ="submit" value = "Accept">Accept</button>,
+    <button name = "action", type ="submit" value = "Reject">Reject</button>
+</body>

@@ -1,0 +1,35 @@
+<html> 
+<body> 
+    <h2>Transaction History</h2> 
+    <a>These are your history</a> 
+
+    <a href="/">Back to home</a>
+    <br/><br/> 
+    <table border=1> 
+        <thead> 
+            <th>Job Offer ID</th> 
+            <th>Price</th> 
+            <th>Location</th> 
+            <th>Date_from</th> 
+            <th>Date_to</th> 
+            <th>Pet ID</th> 
+            <th>Petsitter</th> 
+ 
+            {% comment %} <th>Action</th> {% endcomment %} 
+        </thead> 
+        {% for transactions in history %} 
+        <tr> 
+            <!-- <td> {{ cust.5 }} </td> --> 
+            <td> {{ transactions.0 }} </td> 
+            <td> {{ transactions.1 }} </td> 
+            <td> {{ transactions.2 }} </td> 
+            <td> {{ transactions.3 }} </td> 
+            <td> {{ transactions.4 }} </td> 
+            <td> {{ transactions.5 }} </td> 
+            <td> {{ transactions.6 }} </td> 
+      
+        </tr> 
+        {% endfor %} 
+    </table> 
+</body> 
+</html>

@@ -1,6 +1,7 @@
 <html>
 <body>
     <h2>Pending Offers</h2>
+    <a href="/">Back to home</a>
     <br/><br/>
     <table border=1>
         <thead>
@@ -8,13 +9,13 @@
             <th>Interested User</th>
             <th>Action</th>
         </thead>
-        {% for pending_offers in pending_records %}
+        {% for pendingoffers in pendingrecords %}
         <tr>
-            <td> {{ pending_offers.0 }} </td>
-            <td> {{ pending_offers.1 }} </td>
+            <td> {{ pendingoffers.0 }} </td>
+            <td> {{ pendingoffers.1 }} </td>
             <td>
-                <a href="view_offer/{{pending_offers.0}}"><button>View Offer</button></a> | 
-                <a href="view_user/{{pending_offers.1}}"><button>View User</button></a>
+                <a href="view_offer/{{pendingoffers.0}}"><button>View Offer</button></a> | 
+                <a href="view_user/{{pendingoffers.1}}"><button>View User</button></a>
               </td>
         </tr>
         {% endfor %}

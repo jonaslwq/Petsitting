@@ -1,44 +1,35 @@
-<html>
-<body>
-    <h2>Details for {{offer_user.1}}</h2>
-    <a href="/">Back to main menu</a>
-    <br/><br/>
-    <table style='text-align:left'>
-        <tr>
-            <th>ID</th>
-            <td>:</td>
-            <td> {{ cust.5 }} </td>
-        </tr>
-        <tr>
-            <th>First name</th>
-            <td>:</td>
-            <td> {{ cust.0 }} </td>
-        </tr>
-        <tr>
-            <th>Last name</th>
-            <td>:</td>
-            <td> {{ cust.1 }} </td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>:</td>
-            <td> {{ cust.2 }} </td>
-        </tr>
-        <tr>
-            <th>Date of birth</th>
-            <td>:</td>
-            <td> {{ cust.3 }} </td>
-        </tr>
-        <tr>
-            <th>Since</th>
-            <td>:</td>
-            <td> {{ cust.4 }} </td>
-        </tr>
-        <tr>
-            <th>Country</th>
-            <td>:</td>
-            <td> {{ cust.6 }} </td>
-        </tr>
-    </table>
-</body>
+<html> 
+<body> 
+    <h2>Details for {{pendingusers.0}}</h2> 
+    <a href="/">Back to home</a> 
+    <br/><br/> 
+    <table style='text-align:left'> 
+        <tr> 
+            <th>Username</th> 
+            <td>:</td> 
+            <td> {{ pendingusers.0 }} </td> 
+        </tr> 
+        <tr> 
+            <th>Email</th> 
+            <td>:</td> 
+            <td> {{ pendingusers.1 }} </td> 
+        </tr> 
+        <tr> 
+            <th>Phone Number</th> 
+            <td>:</td> 
+            <td> {{ pendingusers.2 }} </td> 
+        </tr> 
+        <tr> 
+            <th>Years of Experience</th> 
+            <td>:</td> 
+            <td> {{ pendingusers.3 }} </td> 
+        </tr> 
+        {% comment %} <tr> 
+            <th>Rating</th> 
+            <td>:</td> 
+            <td> {{ insert avg rating with query }} </td> 
+        </tr>  {% endcomment %}
+     
+    </table> 
+</body> 
 </html>

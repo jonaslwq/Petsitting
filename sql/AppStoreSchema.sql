@@ -4,24 +4,45 @@
 
 ********************/
 
-CREATE TABLE IF NOT EXISTS customers (
- first_name VARCHAR(64) NOT NULL,
- last_name VARCHAR(64) NOT NULL,
- email VARCHAR(64) UNIQUE NOT NULL,
- dob DATE NOT NULL,
- since DATE NOT NULL,
- customerid VARCHAR(16) PRIMARY KEY,
- country VARCHAR(16) NOT NULL);
-	
-CREATE TABLE IF NOT EXISTS games(
- name VARCHAR(32),
- version CHAR(3),
- price NUMERIC NOT NULL,
- PRIMARY KEY (name, version));
-  
- CREATE TABLE downloads(
- customerid VARCHAR(16) REFERENCES customers(customerid) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
- name VARCHAR(32),
- version CHAR(3),
- PRIMARY KEY (customerid, name, version),
- FOREIGN KEY (name, version) REFERENCES games(name, version) ON UPDATE CASCADE ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED);
+CREATE TABLE IF NOT EXISTS portfolio (
+username VARCHAR(256) PRIMARY KEY,
+email VARCHAR(256) NOT NULL UNIQUE,
+phonenum VARCHAR(8),
+year_exp INT,
+password VARCHAR(64) NOT NULL,
+CHECK(length(phonenum) = 8),
+CHECK(length(password) >= 8)
+);
+
+CREATE TABLE IF NOT EXISTS pet (
+petname VARCHAR(32) NOT NULL,
+petid VARCHAR(256) PRIMARY KEY,
+type VARCHAR(62) NOT NULL,
+breed VARCHAR(32) NOT NULL,
+username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE
+);
+
+CREATE TABLE IF NOT EXISTS joboffer (
+offerid VARCHAR(32) PRIMARY KEY,
+price FLOAT,
+location VARCHAR(256) NOT NULL,
+date_from DATE NOT NULL,
+date_to DATE NOT NULL,
+petid VARCHAR(256) REFERENCES pet(petid) DEFERRABLE,
+username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE,
+UNIQUE (date_from, date_to, petid), 
+CHECK(date_to > date_from)
+);
+
+CREATE TABLE IF NOT EXISTS transaction (
+offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE,
+username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE,
+petsitter VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE,
+rating INT,
+CHECK (rating >= 0 AND rating <= 5)
+);
+
+CREATE TABLE IF NOT EXISTS pending (
+offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE,
+username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE
+);

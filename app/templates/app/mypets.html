@@ -2,7 +2,7 @@
 <html>
 <body>
     <h2>My Pets</h2>
-    
+    <a href="/">Back to home</a>
     <br/><br/>
     <table border=1>
         <thead>
@@ -13,10 +13,10 @@
         </thead>
         {% for animal in pets %}
         <tr>
-            <td> {{ pets.0 }} </td>
-            <td> {{ pets.1 }} </td>
-            <td> {{ pets.2 }} </td>
-            <td> {{ pets.3 }} </td>
+            <td> {{ animal.0 }} </td>
+            <td> {{ animal.1 }} </td>
+            <td> {{ animal.2 }} </td>
+            <td> {{ animal.3 }} </td>
                 
         </tr>
         {% endfor %}

@@ -127,7 +127,7 @@ def view_user(request, username):
     return render(request,'app/view_user.html',result_dict)
 
 def mypets(request):
-    """Shows the pending page"""
+    """Shows the mypets page"""
 
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
@@ -138,3 +138,41 @@ def mypets(request):
     result_dict = {'pets': animal}
 
     return render(request,'app/mypets.html',result_dict)
+
+def sit_pet(request):
+    """Shows the sit a pet page"""
+
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT offerid, petid FROM joboffer")
+        alloffers = cursor.fetchall()
+
+    result_dict = {'total': alloffers}
+
+    return render(request,'app/sit_pet.html', result_dict)
+
+def view_pet(request, petid):
+    """Shows the main page"""
+    
+    ## Use raw query to get a customer
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT p.petname, p.type, p.breed, j.date_from, j.date_to, j.location, j.price, p.petid FROM pet p, joboffer j WHERE p.petid = %s AND p.petid = j.petid", [petid])
+        eachpet = cursor.fetchone()
+    result_dict = {'allpet': eachpet}
+
+    return render(request,'app/view_pet.html',result_dict)
+
+def interested(request):
+    """Shows the interested page"""
+    return render(request,'app/interested.html')
+
+def history(request):  
+    """Shows the history page""" 
+ 
+    ## Use raw query to get all objects 
+    with connection.cursor() as cursor: 
+        cursor.execute("SELECT * FROM joboffer j, transaction t WHERE t.username = 'johnny123' AND t.username = j.username AND t.offerid = j.offerid") 
+        transactions = cursor.fetchall() 
+ 
+    result_dict = {'history': transactions} 
+ 
+    return render(request,'app/history.html',result_dict)
