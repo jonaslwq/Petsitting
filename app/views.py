@@ -101,7 +101,7 @@ def pending(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
 
-        cursor.execute("select * from pending where offerid in (select offerid from joboffer where petid in (select petid from pet where username = 'johnny123')) order by offerid") 
+        cursor.execute("SELECT * FROM pending WHERE offerid IN (SELECT offerid FROM joboffer WHERE petid IN (SELECT petid FROM pet WHERE username = 'johnny123')) ORDER BY offerid") 
         pendingoffers = cursor.fetchall()
 
     result_dict = {'pendingrecords': pendingoffers}
