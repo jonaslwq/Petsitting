@@ -91,6 +91,10 @@ def edit(request, id):
     context["status"] = status
     return render(request, "app/edit.html", context)
 
+def main_page(request):
+    """Shows the main page"""
+    return render(request,'app/main_page.html')
+
 def pending(request):
     """Shows the pending page"""
 
@@ -125,6 +129,58 @@ def view_user(request, username):
     result_dict = {'pendingusers': user} 
  
     return render(request,'app/view_user.html',result_dict)
+
+def register_user(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if username is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM portfolio WHERE username = %s", [request.POST['username']])
+            user = cursor.fetchone()
+            ## No user with same username
+            if user == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO portfolio VALUES (%s, %s, %s, %s, %s)"
+                        , [request.POST['username'], request.POST['email'], request.POST['phonenum'],
+                           request.POST['year_exp'] , request.POST['password'] ])
+                return redirect('login')    
+            else:
+                status = 'User with username %s already exists' % (request.POST['username'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/register_user.html", context)
+
+def register_pet(request):
+    """Shows the main page"""
+    context = {}
+    status = ''
+
+    if request.POST:
+        ## Check if petid is already in the table
+        with connection.cursor() as cursor:
+
+            cursor.execute("SELECT * FROM pet WHERE petid = %s", [request.POST['petid']])
+            pet = cursor.fetchone()
+            ## No pet with same petid
+            if pet == None:
+                ##TODO: date validation
+                cursor.execute("INSERT INTO pet VALUES (%s, %s, %s, %s, %s)"
+                        , [request.POST['petname'], request.POST['petid'], request.POST['type'],
+                           request.POST['breed'] , request.POST['username'] ])
+                return redirect('index')    
+            else:
+                status = 'Pet with ID %s already exists' % (request.POST['petid'])
+
+
+    context['status'] = status
+ 
+    return render(request, "app/register_pet.html", context)
 
 def mypets(request):
     """Shows the mypets page"""
