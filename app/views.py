@@ -101,7 +101,7 @@ def pending(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
 
-        cursor.execute("SELECT offerid, interested_username FROM pending WHERE username = 'johnny123'")
+        cursor.execute("select * from pending where offerid in (select offerid from joboffer where petid in (select petid from pet where username = 'johnny123')) order by offerid") 
         pendingoffers = cursor.fetchall()
 
     result_dict = {'pendingrecords': pendingoffers}
@@ -199,7 +199,7 @@ def sit_pet(request):
     """Shows the sit a pet page"""
 
     with connection.cursor() as cursor:
-        cursor.execute("SELECT offerid, petid FROM joboffer")
+        cursor.execute("SELECT offerid, petid FROM joboffer WHERE petid NOT IN (SELECT petid FROM pet WHERE username = 'johnny123')")
         alloffers = cursor.fetchall()
 
     result_dict = {'total': alloffers}
