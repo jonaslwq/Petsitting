@@ -21,16 +21,19 @@ import app.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', app.views.sit_pet, name='sit_pet'),
-    path('view_pet/<str:petid>', app.views.view_pet, name='view_pet'),
-    path('view_pet/interested/', app.views.interested, name='interested'),
-    path('mypets/', app.views.mypets, name='mypets'),
-    path('pending/', app.views.pending,  name='pending'),
-    path('pending/view_offer/<str:offerid>', app.views.view_offer, name='view_offer'),
-    path('pending/view_user/<str:username>', app.views.view_user, name='view_user'),
-    path('history', app.views.history, name = 'history'),
+    path('main_page/', app.views.main_page, name='main_page'),
+    path('main_page/sit_pet/', app.views.sit_pet, name='sit_pet'),
+    path('main_page/sit_pet/view_pet/<str:petid>', app.views.view_pet, name='view_pet'),
+    path('main_page/sit_pet/view_pet/interested/', app.views.interested, name='interested'),
+    path('register_user/', app.views.register_user, name = 'register_user'),
+    path('main_page/register_pet/', app.views.register_pet, name = 'register_pet'),
+    path('main_page/mypets/', app.views.mypets, name='mypets'),
+    path('main_page/pending/', app.views.pending,  name='pending'),
+    path('main_page/pending/view_offer/<str:offerid>', app.views.view_offer, name='view_offer'),
+    path('main_page/pending/view_user/<str:username>', app.views.view_user, name='view_user'),
+    path('main_page/history/', app.views.history, name = 'history'),
     #path('', app.views.index, name='index'),
-    path('add', app.views.add, name='add'),
-    path('view/<str:id>', app.views.view, name='view'),
-    path('edit/<str:id>', app.views.edit, name='edit')
+    #path('add', app.views.add, name='add'),
+    #path('view/<str:id>', app.views.view, name='view'),
+    #path('edit/<str:id>', app.views.edit, name='edit')
 ]

@@ -2,8 +2,8 @@
 <body> 
     <h2>Transaction History</h2> 
     <a>These are your history</a> 
-
-    <a href="/">Back to home</a>
+    <br/><br/>
+    <a href="/main_page/">Back to home</a>
     <br/><br/> 
     <table border=1> 
         <thead> 
@@ -14,8 +14,7 @@
             <th>Date_to</th> 
             <th>Pet ID</th> 
             <th>Petsitter</th> 
- 
-            {% comment %} <th>Action</th> {% endcomment %} 
+            <th>Rating</th> 
         </thead> 
         {% for transactions in history %} 
         <tr> 
@@ -26,7 +25,8 @@
             <td> {{ transactions.3 }} </td> 
             <td> {{ transactions.4 }} </td> 
             <td> {{ transactions.5 }} </td> 
-            <td> {{ transactions.6 }} </td> 
+            <td> {{ transactions.9 }} </td> 
+            <td> {{ transactions.10 }} </td> 
       
         </tr> 
         {% endfor %} 

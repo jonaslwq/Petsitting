@@ -29,20 +29,29 @@ location VARCHAR(256) NOT NULL,
 date_from DATE NOT NULL,
 date_to DATE NOT NULL,
 petid VARCHAR(256) REFERENCES pet(petid) DEFERRABLE,
-username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE,
 UNIQUE (date_from, date_to, petid), 
 CHECK(date_to > date_from)
 );
 
-CREATE TABLE IF NOT EXISTS transaction (
+CREATE TABLE IF NOT EXISTS pending (
 offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE,
-username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE,
+petsitter VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE,
+UNIQUE (offerid, petsitter)
+);
+
+CREATE TABLE IF NOT EXISTS transaction (
+offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE UNIQUE,
+petsitter VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE
+);
+
+CREATE TABLE IF NOT EXISTS to_rate (
+offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE UNIQUE,
 rating INT,
 CHECK (rating >= 0 AND rating <= 5)
 );
 
-CREATE TABLE IF NOT EXISTS pending (
-username VARCHAR(256) REFERENCES portfolio(username) DEFERRABL
-offerid VARCHAR(32) REFERENCES joboffer(offerid) DEFERRABLE,
-username VARCHAR(256) REFERENCES portfolio(username) DEFERRABLE
-);
+
+
+
+
+
