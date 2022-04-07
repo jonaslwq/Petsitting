@@ -1,9 +1,9 @@
 # Construct the URI from the .env
-DB_HOST='localhost'
-DB_NAME='prosgres'
-DB_USER='postgrs'
-DB_PORT='5432'
-DB_PASSWORD='baboon13'
+DB_HOST=$DB_HOST
+DB_NAME=$DB_NAME
+DB_USER=$DB_USER
+DB_PORT=$DB_PORT
+DB_PASSWORD=$DB_PASSWORD
 
 while IFS= read -r line
 do
@@ -28,11 +28,7 @@ done < ".env"
 URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
-psql ${URI} -f sql/AppStoreClean.sql
-psql ${URI} -f sql/AppStoreSchema.sql
-psql ${URI} -f sql/AppStoreCustomers.sql
-psql ${URI} -f sql/AppStoreGames.sql
-psql ${URI} -f sql/AppStoreDownloads.sql
+
 psql ${URI} -f sql/PetsittingSchema.sql
 psql ${URI} -f sql/Petsittingjoboffer.sql
 psql ${URI} -f sql/Petsittingpending.sql
