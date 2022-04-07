@@ -4,6 +4,7 @@
 
 ****************************/
 
-INSERT INTO pet VALUES ('tom', 123, 'dog', 'huskey', 'johnny123');
-INSERT INTO pet VALUES ('dick', 456, 'dog', 'chiwa', 'gerald123');
-INSERT INTO pet VALUES ('harry', 789, 'cat', 'meow', 'siewkit8899');
+INSERT INTO pet VALUES ('tom', 1, 'dog', 'huskey', 'johnny123');
+INSERT INTO pet VALUES ('larry', 2, 'dog', 'dalmation', 'gerald123');
+INSERT INTO pet VALUES ('harry', 3, 'cat', 'persian', 'siewkit8899');
+
