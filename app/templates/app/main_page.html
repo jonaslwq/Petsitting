@@ -1,15 +1,26 @@
-<html> 
+<html>
+<style>
+.pending{
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+}
+
+
+
+</style> 
 <body> 
-    <h2>Main Page</h2> 
+    <center> <h2>Main Page</h2>  </center>
  
     <p style="color:red">{{ status|safe }}</p> 
-         
-        <a href="pending/"><button>Pending Offers</button></a> 
+        <center> 
+        <button class="pending"><a href="pending/">Pending Offers</a></button> 
         <a href="mypets/"><button>My Pets</button> </a> 
         <a href="register_pet/"><button>Register Pet</button> </a> 
         <a href="history/"><button>Transaction History</button> </a> 
         {% comment %} <a href="/"><button>Register job</button> </a>  {% endcomment %}
         <a href="sit_pet/"><button>Sit a Pet</button> </a> 
         {% comment %} <a href="/"><button>Leave Rating</button>  </a>  {% endcomment %}
+        </center>
 </body> 
 </html>
