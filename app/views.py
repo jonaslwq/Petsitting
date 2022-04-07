@@ -46,7 +46,7 @@ def pending(request):
     ## Use raw query to get all objects
     with connection.cursor() as cursor:
 
-        cursor.execute("SELECT * FROM pending WHERE offerid IN (SELECT offerid FROM joboffer WHERE petid IN (SELECT petid FROM pet WHERE username = 'johnny123')) AND offerid NOT IN (SELECT offerid FROM transaction) ORDER BY offerid") 
+        cursor.execute("SELECT p.offerid, p.petsitter FROM pending p, joboffer j, pet pet WHERE p.offerid = j.offerid AND j.petid = pet.petid AND pet.username = 'johnny123' AND p.offerid NOT IN (SELECT offerid FROM transaction) ORDER BY p.offerid") 
         pendingoffers = cursor.fetchall()
 
     result_dict = {'pendingrecords': pendingoffers}
@@ -139,6 +139,12 @@ def mypets(request):
 
     result_dict = {'pets': animal}
 
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT breed FROM transaction t, pet p, joboffer j WHERE t.offerid = j.offerid AND j.petid = p.petid GROUP BY p.breed ORDER BY COUNT(p.breed) DESC LIMIT 1")
+        ff = cursor.fetchone()
+        
+    result_dict.update({'allfact': ff})
+
     return render(request,'app/mypets.html',result_dict)
 
 def sit_pet(request):
@@ -155,10 +161,10 @@ def sit_pet(request):
 def view_pet(request, petid):
     """Shows the main page"""
     
-    ## Use raw query to get a customer
     with connection.cursor() as cursor:
         cursor.execute("SELECT p.petname, p.type, p.breed, j.date_from, j.date_to, j.location, j.price, p.petid FROM pet p, joboffer j WHERE p.petid = %s AND p.petid = j.petid", [petid])
         eachpet = cursor.fetchone()
+
     result_dict = {'allpet': eachpet}
 
     return render(request,'app/view_pet.html',result_dict)
@@ -181,15 +187,14 @@ def history(request):
         transactions_nr = cursor.fetchall() 
  
     result_dict = {'history_nr': transactions_nr} 
-    print(result_dict)
+    
     ## Use raw query to get all objects 
     with connection.cursor() as cursor: 
         cursor.execute("SELECT j.offerid, j.price, j.location, j.date_from, j.date_to, j.petid, t.petsitter, tr.rating FROM joboffer j, transaction t, pet p, to_rate tr WHERE j.offerid = t.offerid AND j.offerid = tr.offerid AND p.petid = j.petid AND p.username = 'johnny123'") 
         transactions_r = cursor.fetchall() 
  
     result_dict.update({'history_r': transactions_r})
-    print(result_dict)
- 
+
     return render(request,'app/history.html',result_dict)
 
 def give_rating(request,offerid): 
