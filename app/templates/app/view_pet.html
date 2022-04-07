@@ -1,9 +1,14 @@
 <html>
 <body>
-    <h2>Details for Pet {{allpet.7}}</h2>
+    <h2>Details for {{allpet.0}}</h2>
     <a href="/main_page/">Back to home</a>
     <br/><br/>
     <table style='text-align:left'>
+        <tr>
+            <th>Pet ID</th>
+            <td>:</td>
+            <td> {{ allpet.7 }} </td>
+        </tr>
         <tr>
             <th>Pet Name</th>
             <td>:</td>
@@ -41,5 +46,4 @@
         </tr>
     
     </table>
-    <a href="interested/"><button name = "action", type ="submit" value = "Accept">I am interested</button>
 </body>
