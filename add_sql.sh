@@ -1,9 +1,9 @@
 # Construct the URI from the .env
-DB_HOST=$DB_HOST
-DB_NAME=$DB_NAME
-DB_USER=$DB_USER
-DB_PORT=$DB_PORT
-DB_PASSWORD=$DB_PASSWORD
+DDB_HOST=''
+DB_NAME=''
+DB_USER=''
+DB_PORT=''
+DB_PASSWORD=''
 
 while IFS= read -r line
 do
@@ -28,7 +28,6 @@ done < ".env"
 URI="postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME"
 
 # Run the scripts to insert data.
-
 psql ${URI} -f sql/PetsittingSchema.sql
 psql ${URI} -f sql/Petsittingjoboffer.sql
 psql ${URI} -f sql/Petsittingpending.sql
