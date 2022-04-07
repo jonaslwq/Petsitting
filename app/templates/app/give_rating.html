@@ -1,6 +1,7 @@
 <html>
 <body>
     <h2>Leave a review!</h2>
+    
     <a href="/main_page/">Back to home</a>
 
     <!-- Create a Form -->
@@ -9,7 +10,7 @@
         {% csrf_token %}
         <!-- form -->
         <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField">
-        Rating<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="rating" maxlength="16" class="textinput textInput" required="" id="id_rating"> </div> </div>
+        Rating(1/2/3/4/5)<span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="rating" maxlength="16" class="textinput textInput" required="" id="id_rating"> </div> </div>
 
         <br>
         <button type="submit" value="Add">Add</button>
