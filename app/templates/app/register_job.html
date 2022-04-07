@@ -1,0 +1,22 @@
+<html> 
+<body> 
+    <h2>Register a new job</h2> 
+    <a href="/main_page/">Back to home</a> 
+ 
+    <p style="color:red">{{ status|safe }}</p> 
+    <!-- Create a Form --> 
+    <form method="POST"> 
+        <!-- Security token by Django --> 
+        {% csrf_token %} 
+        <!-- form --> 
+        price <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="price" maxlength="64" class="textinput textInput" required="" id="price"> </div> </div> <div id="div_id_petid" class="control-group"> <label for="id_price" class="control-label requiredField"> 
+        location <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="location" maxlength="64" class="textinput textInput" required="" id="location"> </div> </div> <div id="div_id_location" class="control-group"> <label for="id_location" class="control-label requiredField"> 
+        date_from <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="date_from" maxlength="64" class="textinput textInput" required="" id="date_from"> </div> </div> <div id="div_id_date_from" class="control-group"> <label for="id_date_from" class="control-label requiredField"> 
+        date_to <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="date_to" maxlength="64" class="textinput textInput" required="" id="date_to"> </div> </div> <div id="div_id_date_to" class="control-group"> <label for="id_date_to" class="control-label requiredField"> 
+        petid <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="petid" maxlength="64" class="textinput textInput" required="" id="petid"> </div> </div> <div id="div_id_petid" class="control-group"> <label for="id_petid" class="control-label requiredField"> 
+ 
+        <br> 
+        <a href="/"><button type="submit" value="Add job">Add</button> </a> 
+    </form> 
+</body> 
+</html>

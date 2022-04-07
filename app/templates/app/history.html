@@ -1,0 +1,61 @@
+<html> 
+<body> 
+    <h2>Transaction History</h2> 
+    <a href="/main_page/">Back to home</a>
+    <br/><br/> 
+    <table border=1>
+        <thead> Remember to give a rating!<thead>  
+        <thead> 
+            <th>Job Offer ID</th> 
+            <th>Price</th> 
+            <th>Location</th> 
+            <th>Date From</th> 
+            <th>Date To</th> 
+            <th>Pet ID</th> 
+            <th>Petsitter</th> 
+            <th>Action</th> 
+        </thead> 
+        {% for transactions_nr in history_nr %} 
+        <tr> 
+            
+            <td> {{ transactions_nr.0 }} </td> 
+            <td> {{ transactions_nr.1 }} </td> 
+            <td> {{ transactions_nr.2 }} </td> 
+            <td> {{ transactions_nr.3 }} </td> 
+            <td> {{ transactions_nr.4 }} </td> 
+            <td> {{ transactions_nr.5 }} </td> 
+            <td> {{ transactions_nr.6 }} </td> 
+            <td><a href="give_rating/{{transactions_nr.0}}"><button>Give Rating</button></a><td>
+
+        </tr> 
+        {% endfor %} 
+    </table> 
+    <br/><br/> 
+    <table border=1>
+        <thead> Past Transactions<thead>  
+        <thead> 
+            <th>Job Offer ID</th> 
+            <th>Price</th> 
+            <th>Location</th> 
+            <th>Date From</th> 
+            <th>Date To</th> 
+            <th>Pet ID</th> 
+            <th>Petsitter</th> 
+            <th>Rating</th> 
+        </thead> 
+        {% for transactions_r in history_r %} 
+        <tr> 
+            
+            <td> {{ transactions_r.0 }} </td> 
+            <td> {{ transactions_r.1 }} </td> 
+            <td> {{ transactions_r.2 }} </td> 
+            <td> {{ transactions_r.3 }} </td> 
+            <td> {{ transactions_r.4 }} </td> 
+            <td> {{ transactions_r.5 }} </td> 
+            <td> {{ transactions_r.6 }} </td> 
+            <td> {{ transactions_r.7 }} </td> 
+        </tr> 
+        {% endfor %} 
+    </table>
+</body> 
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+<html>
+<body>
+    <h2>Sit a Pet</h2>
+    <a href="/main_page/">Back to home</a>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Offer ID</th>
+            <th>Pet ID</th>
+            <th>Action</th>
+        </thead>
+        {% for alloffers in total %}
+        <tr>
+            <td> {{ alloffers.0 }} </td>
+            <td> {{ alloffers.1 }} </td>
+            <td>
+                <a href="view_pet/{{alloffers.1}}"><button>View Details</button></a> | 
+                <a href="interested/{{ alloffers.0 }}"><button>I'm Interested!</button></a>
+              </td>
+        
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

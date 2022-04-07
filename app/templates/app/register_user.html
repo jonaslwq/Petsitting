@@ -1,0 +1,23 @@
+<html> 
+<body> 
+    <h2>Register a account</h2> 
+    <a href="/main_page/">Back to home</a>
+ 
+    <p style="color:red">{{ status|safe }}</p> 
+    <!-- Create a Form --> 
+    <form method="POST"> 
+        <!-- Security token by Django --> 
+        {% csrf_token %} 
+        <!-- form --> 
+        <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField"> 
+        username <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="username" maxlength="64" class="textinput textInput" required="" id="username"> </div> </div> <div id="div_id_username" class="control-group"> <label for="id_username" class="control-label requiredField"> 
+        email <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="email" maxlength="64" class="textinput textInput" required="" id="email"> </div> </div> <div id="div_id_email" class="control-group"> <label for="id_email" class="control-label requiredField"> 
+        phonenum <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="phonenum" maxlength="64" class="textinput textInput" required="" id="phonenum"> </div> </div> <div id="div_id_phonenum" class="control-group"> <label for="id_phonenum" class="control-label requiredField"> 
+        year_exp <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="year_exp" maxlength="64" class="textinput textInput" required="" id="year_exp"> </div> </div> <div id="div_id_year_exp" class="control-group"> <label for="id_year_exp" class="control-label requiredField"> 
+        password <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="password" maxlength="64" class="textinput textInput" required="" id="password"> </div> </div> <div id="div_id_password" class="control-group"> <label for="id_password" class="control-label requiredField"> 
+ 
+        <br> 
+        <a href="/"><button type="submit" value="Add user">Add</button> </a> 
+    </form> 
+</body> 
+</html>

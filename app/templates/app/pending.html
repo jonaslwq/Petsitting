@@ -1,0 +1,25 @@
+<html> 
+<body> 
+    <h2>Pending Offers</h2> 
+    <a href="/main_page/">Back to home</a> 
+    <br/><br/> 
+    <table border=1> 
+        <thead> 
+            <th>Offer ID</th> 
+            <th>Interested User</th> 
+            <th>Action</th> 
+        </thead> 
+        {% for pendingoffers in pendingrecords %} 
+        <tr> 
+            <td> {{ pendingoffers.0 }} </td> 
+            <td> {{ pendingoffers.1 }} </td> 
+            <td> 
+                <a href="view_offer/{{pendingoffers.0}}"><button>View Offer</button></a> | 
+                <a href="view_user/{{pendingoffers.1}}"><button>View User</button></a> | 
+                <a href="offer_accepted/{{pendingoffers.0}}/{{pendingoffers.1}}"><button name = "action", type ="submit" value = "Accept">Accept</button></a> 
+              </td> 
+        </tr> 
+        {% endfor %} 
+    </table> 
+</body> 
+</html>

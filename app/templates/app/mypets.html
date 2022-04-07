@@ -1,0 +1,25 @@
+{% load static %}
+<html>
+<body>
+    <h2>My Pets</h2>
+    <a href="/main_page/">Back to home</a>
+    <br/><br/>
+    <table border=1>
+        <thead>
+            <th>Pet Name</th>
+            <th>Pet ID</th>
+            <th>Type</th>
+            <th>Breed</th>
+        </thead>
+        {% for animal in pets %}
+        <tr>
+            <td> {{ animal.0 }} </td>
+            <td> {{ animal.1 }} </td>
+            <td> {{ animal.2 }} </td>
+            <td> {{ animal.3 }} </td>
+                
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

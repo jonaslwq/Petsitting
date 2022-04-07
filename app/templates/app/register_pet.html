@@ -1,0 +1,21 @@
+<html> 
+<body> 
+    <h2>Register a new Pet</h2> 
+    <a href="/main_page/">Back to home</a> 
+ 
+    <p style="color:red">{{ status|safe }}</p> 
+    <!-- Create a Form --> 
+    <form method="POST"> 
+        <!-- Security token by Django --> 
+        {% csrf_token %} 
+        <!-- form --> 
+        <div id="div_id_first_name" class="control-group"> <label for="id_first_name" class="control-label requiredField"> 
+        Pet Name <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="petname" maxlength="64" class="textinput textInput" required="" id="petname"> </div> </div> <div id="div_id_petname" class="control-group"> <label for="id_petname" class="control-label requiredField"> 
+        Pet Type <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="type" maxlength="64" class="textinput textInput" required="" id="type"> </div> </div> <div id="div_id_type" class="control-group"> <label for="id_type" class="control-label requiredField"> 
+        Breed <span class="asteriskField">*</span> </label> <div class="controls"> <input type="text" name="breed" maxlength="64" class="textinput textInput" required="" id="breed"> </div> </div> <div id="div_id_breed" class="control-group"> <label for="id_breed" class="control-label requiredField">  
+ 
+        <br> 
+        <a href="/main_page/"><button type="submit" value="Add pet">Add</button> </a> 
+    </form> 
+</body> 
+</html>
