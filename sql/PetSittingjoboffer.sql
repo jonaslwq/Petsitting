@@ -4,10 +4,11 @@
 
 ****************************/
 
-INSERT INTO joboffer VALUES (432, 23, 'bangkit', '2022-01-01','2022-01-04', 123, 'johnny123');
-INSERT INTO joboffer VALUES (9000, 29, 'jelapang', '2022-05-09','2022-05-14', 456, 'gerald123');
-INSERT INTO joboffer VALUES (7022, 23, 'clmeenti', '2022-02-05','2022-02-08', 789, 'siewkit8899');																					
-INSERT INTO joboffer VALUES (433, 26, 'bangkit', '2022-01-05','2022-01-09', 123, 'johnny123');
-INSERT INTO joboffer VALUES (9001, 277, 'jelapang', '2022-03-09','2022-03-14', 456, 'gerald123');
-INSERT INTO joboffer VALUES (7023, 28, 'clmeenti', '2022-04-05','2022-04-08', 789, 'siewkit8899');																						
-INSERT INTO joboffer VALUES (434, 26, 'bangkit', '2022-01-09','2022-01-13', 123, 'johnny123');		
+INSERT INTO joboffer VALUES (1, 23, 'pasir ris', '2022-01-01','2022-01-04', 1);
+INSERT INTO joboffer VALUES (2, 29, 'tampines', '2022-05-09','2022-05-14', 2);
+INSERT INTO joboffer VALUES (3, 23, 'potong pasir', '2022-02-05','2022-02-08', 3);																					
+INSERT INTO joboffer VALUES (4, 26, 'kent ridge', '2022-01-05','2022-01-09', 1);
+INSERT INTO joboffer VALUES (5, 26, 'kent ridge', '2022-01-11','2022-01-15', 1);
+INSERT INTO joboffer VALUES (6, 21, 'tampines', '2022-01-02','2022-01-15', 2);
+INSERT INTO joboffer VALUES (7, 22, 'pasir ris', '2022-01-28','2022-02-15', 1);
+INSERT INTO joboffer VALUES (8, 22, 'pasir ris', '2022-01-26','2022-01-31', 3);

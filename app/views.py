@@ -95,6 +95,24 @@ def main_page(request):
     """Shows the main page"""
     return render(request,'app/main_page.html')
 
+def register_job(request): 
+    """Shows the register job page""" 
+    context = {} 
+    status = '' 
+ 
+    if request.POST: 
+        ## Check if petid is already in the table 
+        with connection.cursor() as cursor: 
+ 
+            cursor.execute("SELECT MAX(petid) FROM pet") 
+            maxofferid = cursor.fetchone() 
+ 
+            cursor.execute("INSERT INTO pet VALUES (%s, %s, %s, %s, %s, %s)", [str(int(maxofferid[0])+1), request.POST['price'], request.POST['location'], request.POST['date_from'], request.POST['date_to'], request.POST['petid']]) 
+ 
+    context['status'] = status 
+  
+    return render(request, "app/register_job.html", context)
+
 def pending(request):
     """Shows the pending page"""
 
@@ -124,11 +142,20 @@ def view_user(request, username):
      
     ## Use raw query to get a customer 
     with connection.cursor() as cursor: 
-        cursor.execute("SELECT * FROM portfolio WHERE username = %s", [username]) 
+        cursor.execute("SELECT p.username, p.email, p.phonenum, p.year_exp, (SELECT ROUND(AVG(rating),2) FROM to_rate WHERE offerid IN (SELECT offerid FROM transaction WHERE petsitter = %s)) AS avg_rating FROM portfolio p WHERE p.username = %s", [username, username])
         user = cursor.fetchone() 
     result_dict = {'pendingusers': user} 
  
     return render(request,'app/view_user.html',result_dict)
+
+def offer_accepted(request,offerid,petsitter): 
+    """Shows the interested page""" 
+     
+    ## Use raw query to get a customer 
+    with connection.cursor() as cursor: 
+        cursor.execute("INSERT INTO transaction VALUES (%s,%s)", [offerid, petsitter]) 
+ 
+    return render(request,'app/offer_accepted.html')
 
 def register_user(request):
     """Shows the main page"""
@@ -157,7 +184,7 @@ def register_user(request):
     return render(request, "app/register_user.html", context)
 
 def register_pet(request):
-    """Shows the main page"""
+    """Shows the register pet page"""
     context = {}
     status = ''
 
@@ -165,18 +192,10 @@ def register_pet(request):
         ## Check if petid is already in the table
         with connection.cursor() as cursor:
 
-            cursor.execute("SELECT * FROM pet WHERE petid = %s", [request.POST['petid']])
-            pet = cursor.fetchone()
-            ## No pet with same petid
-            if pet == None:
-                ##TODO: date validation
-                cursor.execute("INSERT INTO pet VALUES (%s, %s, %s, %s, %s)"
-                        , [request.POST['petname'], request.POST['petid'], request.POST['type'],
-                           request.POST['breed'] , request.POST['username'] ])
-                return redirect('index')    
-            else:
-                status = 'Pet with ID %s already exists' % (request.POST['petid'])
+            cursor.execute("SELECT MAX(petid) FROM pet")
+            maxpetid = cursor.fetchone()
 
+            cursor.execute("INSERT INTO pet VALUES (%s, %s , %s, %s, %s)", [request.POST['petname'], str(int(maxpetid[0])+1), request.POST['type'], request.POST['breed'], 'johnny123' ])
 
     context['status'] = status
  
@@ -217,8 +236,16 @@ def view_pet(request, petid):
 
     return render(request,'app/view_pet.html',result_dict)
 
-def interested(request):
-    """Shows the interested page"""
+def interested(request, petid): 
+    """Shows the interested page""" 
+     
+    ## Use raw query to get a customer 
+    with connection.cursor() as cursor: 
+        cursor.execute("SELECT j.offerid FROM pet p, joboffer j WHERE p.petid = %s AND p.petid = j.petid", [petid]) 
+        eachofferid = cursor.fetchone() 
+     
+    cursor.execute("INSERT INTO pending VALUES (%s, %s)", [eachofferid[0], 'johnny123']) 
+ 
     return render(request,'app/interested.html')
 
 def history(request):  
@@ -226,9 +253,26 @@ def history(request):
  
     ## Use raw query to get all objects 
     with connection.cursor() as cursor: 
-        cursor.execute("SELECT * FROM joboffer j, transaction t WHERE t.username = 'johnny123' AND t.username = j.username AND t.offerid = j.offerid") 
-        transactions = cursor.fetchall() 
+        cursor.execute("SELECT j.offerid, j.price, j.location, j.date_from, j.date_to, j.petid, t.petsitter FROM joboffer j, transaction t, pet p WHERE j.offerid NOT IN (SELECT offerid FROM to_rate) AND j.offerid = t.offerid AND p.petid = j.petid AND p.username = 'johnny123'") 
+        transactions_nr = cursor.fetchall() 
  
-    result_dict = {'history': transactions} 
+    result_dict = {'history_nr': transactions_nr} 
+    print(result_dict)
+    ## Use raw query to get all objects 
+    with connection.cursor() as cursor: 
+        cursor.execute("SELECT j.offerid, j.price, j.location, j.date_from, j.date_to, j.petid, t.petsitter, tr.rating FROM joboffer j, transaction t, pet p, to_rate tr WHERE j.offerid = t.offerid AND j.offerid = tr.offerid AND p.petid = j.petid AND p.username = 'johnny123'") 
+        transactions_r = cursor.fetchall() 
+ 
+    result_dict.update({'history_r': transactions_r})
+    print(result_dict)
  
     return render(request,'app/history.html',result_dict)
+
+def give_review(request,offerid): 
+    """Shows the give review page""" 
+     
+    ## Use raw query to get a customer 
+    with connection.cursor() as cursor: 
+        cursor.execute("INSERT INTO to_rate VALUES (%s,%s)", [offerid], [request.POST['rating']]) 
+ 
+    return render(request,'app/give_review .html')

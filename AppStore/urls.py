@@ -22,6 +22,7 @@ import app.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main_page/', app.views.main_page, name='main_page'),
+    path('register_job/', app.views.register_job, name = 'register_job'),
     path('main_page/sit_pet/', app.views.sit_pet, name='sit_pet'),
     path('main_page/sit_pet/view_pet/<str:petid>', app.views.view_pet, name='view_pet'),
     path('main_page/sit_pet/view_pet/interested/', app.views.interested, name='interested'),
@@ -31,7 +32,9 @@ urlpatterns = [
     path('main_page/pending/', app.views.pending,  name='pending'),
     path('main_page/pending/view_offer/<str:offerid>', app.views.view_offer, name='view_offer'),
     path('main_page/pending/view_user/<str:username>', app.views.view_user, name='view_user'),
+    path('main_page/pending/offer_accepted/<str:offerid><str:petsitter>', app.views.offer_accepted, name='offer_accepted'),
     path('main_page/history/', app.views.history, name = 'history'),
+    path('main_page/history/give_review/', app.views.give_review, name = 'give_review'),
     #path('', app.views.index, name='index'),
     #path('add', app.views.add, name='add'),
     #path('view/<str:id>', app.views.view, name='view'),
