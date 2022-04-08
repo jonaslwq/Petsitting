@@ -151,7 +151,7 @@ def sit_pet(request):
     """Shows the sit a pet page"""
 
     with connection.cursor() as cursor:
-        cursor.execute("SELECT offerid, petid FROM joboffer WHERE petid NOT IN (SELECT petid FROM pet WHERE username = 'johnny123') AND offerid NOT IN (SELECT offerid FROM transaction)")
+        cursor.execute("SELECT offerid, petid FROM joboffer WHERE petid NOT IN (SELECT petid FROM pet WHERE username = 'johnny123') AND (offerid, 'johnny123') NOT IN (SELECT * FROM pending)")
         alloffers = cursor.fetchall()
 
     result_dict = {'total': alloffers}
